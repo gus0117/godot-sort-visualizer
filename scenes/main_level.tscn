@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwaf6b3erf2f"]
+
+[ext_resource type="PackedScene" uid="uid://bpod25e3l2box" path="res://scenes/main.tscn" id="1_ufxs0"]
+[ext_resource type="PackedScene" uid="uid://5jo2pduvpmmb" path="res://scenes/array_visualizer.tscn" id="2_6we3w"]
+
+[node name="mainLevel" type="Node2D"]
+
+[node name="main" parent="." instance=ExtResource("1_ufxs0")]
+
+[node name="ArrayVisualizer" parent="." instance=ExtResource("2_6we3w")]

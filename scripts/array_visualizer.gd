@@ -1,0 +1,50 @@
+extends Node2D
+
+var array: Array = []
+var highlight: Array = []
+
+func set_array(new_array: Array) -> void:
+	array = new_array
+	queue_redraw()
+
+func set_highlight(new_highlight: Array) -> void:
+	highlight = new_highlight
+	queue_redraw()
+
+func _draw() -> void:
+	var width = 40
+	var base_y = 350
+	var font := ThemeDB.fallback_font
+	var height_scale = 20
+	
+	# ancho total del gráfico
+	var total_width = array.size() * width
+	# offset para centrar (asumiendo que tu ventana mide 800px de ancho)
+	var screen_width = get_viewport_rect().size.x
+	var offset_x = (screen_width - total_width) / 2
+	
+	for i in range(array.size()):
+		var height = array[i] * 10
+		
+		var x = offset_x + i * width   # desplazado al centro
+		var y = base_y - height
+		
+		# Colores
+		var bar_color = Color.WHITE
+		var text_color = Color(0.8, 0.9, 1) # celeste claro
+
+		if i in highlight:
+			bar_color = Color.YELLOW
+			text_color = Color.YELLOW
+
+		# Dibujar barra
+		#draw_rect(Rect2(i * width, base_y - height, width - 5, height), bar_color)
+		draw_rect(Rect2(x, y, width - 5, height), bar_color)
+
+		# Dibujar valor arriba de la barra
+		#draw_string(font, Vector2(i * width + 5, base_y - height - 5), str(array[i]), 0, -1, 16, Color(0.8, 0.9, 1))
+		draw_string(font, Vector2(x + 5, y - 5), str(array[i]), 0, -1, 16, Color(0.8, 0.9, 1))
+		
+		# Dibujar índice debajo de la barra
+		#draw_string(font, Vector2(i * width + 5, base_y + 20), str(i),0, -1, 16, text_color)
+		draw_string(font, Vector2(x + 5, base_y + 20), str(i),0, -1, 16, text_color)
