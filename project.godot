@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="godot-sort-viewer"
+run/main_scene="uid://bpod25e3l2box"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

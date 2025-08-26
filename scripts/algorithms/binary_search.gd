@@ -25,12 +25,12 @@ func binary_search_step(array: Array, visualizer: Node2D, value: int) -> void:
 	while lo <= hi:
 		var mid = (lo + hi) >> 1
 		if "set_highlight" in visualizer:
-			visualizer.set_highlight([mid]) # Color.YELLEW
+			visualizer.set_highlight([mid], Parameters.comparasionColor) # Color.YELLEW
 		await Stepper.wait()
 
 		if array[mid] == value:
 			if "set_highlight" in visualizer:
-				visualizer.set_highlight([mid]) # Color.GREEN
+				visualizer.set_highlight([mid], Parameters.finalColor) # Color.GREEN
 			await Stepper.wait()
 			return
 		elif array[mid] < value:

@@ -17,15 +17,15 @@ func partition(array: Array, visualizer: Node2D, low: int, high: int) -> int:
 
 	# 🔹 Marcar pivote en cyan
 	if "set_highlight" in visualizer:
-		#visualizer.set_highlight([high], Color.CYAN)
-		visualizer.set_highlight([high])
+		visualizer.set_highlight([high], Parameters.newIteration)
+		#visualizer.set_highlight([high])
 	await Stepper.wait()
 
 	for j in range(low, high):
 		# 🔹 Comparación en amarillo
 		if "set_highlight" in visualizer:
-			#visualizer.set_highlight([j, high], Color.YELLOW)
-			visualizer.set_highlight([j, high])
+			visualizer.set_highlight([j, high], Parameters.comparasionColor)
+			#visualizer.set_highlight([j, high])
 		await Stepper.wait()
 
 		if array[j] <= pivot:
@@ -33,8 +33,8 @@ func partition(array: Array, visualizer: Node2D, low: int, high: int) -> int:
 			if i != j:
 				# 🔹 Intercambio en rojo
 				if "set_highlight" in visualizer:
-					#visualizer.set_highlight([i, j], Color.RED)
-					visualizer.set_highlight([i, j])
+					visualizer.set_highlight([i, j], Parameters.swapColor)
+					#visualizer.set_highlight([i, j])
 				await Stepper.wait()
 
 				var temp = array[i]
@@ -48,8 +48,8 @@ func partition(array: Array, visualizer: Node2D, low: int, high: int) -> int:
 	# Colocar pivote en su lugar
 	if i + 1 != high:
 		if "set_highlight" in visualizer:
-			#visualizer.set_highlight([i + 1, high], Color.MAGENTA)
-			visualizer.set_highlight([i + 1, high])
+			visualizer.set_highlight([i + 1, high], Color.MAGENTA)
+			#visualizer.set_highlight([i + 1, high])
 		await Stepper.wait()
 
 		var temp2 = array[i + 1]
@@ -62,8 +62,8 @@ func partition(array: Array, visualizer: Node2D, low: int, high: int) -> int:
 
 	# 🔹 Marcar posición final del pivote como verde
 	if "set_highlight" in visualizer:
-		#visualizer.set_highlight([i + 1], Color.GREEN)
-		visualizer.set_highlight([i + 1])
+		visualizer.set_highlight([i + 1], Parameters.finalColor)
+		#visualizer.set_highlight([i + 1])
 	await Stepper.wait()
 
 	return i + 1

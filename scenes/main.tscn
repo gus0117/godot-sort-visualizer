@@ -31,6 +31,11 @@ layout_mode = 2
 offset_right = 134.0
 offset_bottom = 226.0
 
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ordenamiento"
+horizontal_alignment = 1
+
 [node name="GenerateArray" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Generar"
@@ -78,6 +83,11 @@ anchor_right = 1.0
 offset_left = -139.0
 offset_bottom = 101.0
 grow_horizontal = 0
+
+[node name="Label" type="Label" parent="SearchContainer"]
+layout_mode = 2
+text = "Busqueda"
+horizontal_alignment = 1
 
 [node name="SearchOption" type="OptionButton" parent="SearchContainer"]
 layout_mode = 2

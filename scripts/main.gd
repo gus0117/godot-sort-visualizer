@@ -24,8 +24,8 @@ func _ready():
 
 func _on_generate_pressed():
 	array = []
-	for i in range(15):
-		array.append(randi() % 20 + 1)
+	for i in range(Parameters.vector_size):
+		array.append(randi() % Parameters.max_value + 1)
 	reboot_array = array.duplicate()
 	visualizer.set_array(array)
 
@@ -72,7 +72,7 @@ func _on_ResetBtn_pressed() -> void:
 
 	# 3. Refrescar visualizador
 	visualizer.set_array(array)
-	visualizer.set_highlight([])
+	visualizer.set_highlight([], Parameters.normalColor)
 
 	# 4. (Opcional) detener cualquier corrutina previa
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFAULT, "sorting_tasks", "queue_free")

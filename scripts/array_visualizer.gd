@@ -2,12 +2,12 @@ extends Node2D
 
 # Arrays
 var array: Array = []
-var highlight: Array = []
+var highlight: Dictionary = {} # {indice: color}
 
 # settings
 var bar_width: int = 40
 var bar_spacing: int = 5
-var base_y: int = 350
+var base_y: int = 550 # 350 original
 var font := ThemeDB.fallback_font
 var height_scale = 20
 
@@ -18,8 +18,10 @@ func set_array(new_array: Array) -> void:
 	array = new_array
 	queue_redraw()
 
-func set_highlight(new_highlight: Array) -> void:
-	highlight = new_highlight
+func set_highlight(indexs: Array, color: Color) -> void:
+	highlight.clear()
+	for i in indexs:
+		highlight[i] = color
 	queue_redraw()
 
 func _draw() -> void:
@@ -38,12 +40,17 @@ func _draw() -> void:
 		var y = base_y - height
 		
 		# Colores
-		var bar_color = Color.WHITE
+		var bar_color = Parameters.normalColor
 		var text_color = Color(0.8, 0.9, 1) # celeste claro
-
-		if i in highlight:
-			bar_color = Color.YELLOW
-			text_color = Color.YELLOW
+		
+		if highlight.has(i):
+			bar_color = highlight[i]
+			text_color = highlight[i]
+		
+		#ORIGINAL
+		#if i in highlight:
+		#	bar_color = Color.YELLOW
+		#	text_color = Color.YELLOW
 
 		# Dibujar barra
 		#draw_rect(Rect2(i * width, base_y - height, width - 5, height), bar_color)
