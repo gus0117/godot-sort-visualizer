@@ -1,15 +1,35 @@
+# res://scripts/algorithms/bubblesort.gd
 extends Node
 
-func bubble_sort_step(array: Array, visualizer: Node) -> void:
+func bubble_sort_step(array: Array, visualizer: Node2D) -> void:
 	var n = array.size()
 	for i in range(n):
 		for j in range(0, n - i - 1):
-			visualizer.set_highlight([j, j+1])
-			await Engine.get_main_loop().create_timer(Parameters.animation_speed).timeout
+			# 1) Mostrar comparación
+			if "set_highlight" in visualizer:
+				visualizer.set_highlight([j, j + 1])
+			await Stepper.wait()
+
+			# 2) Si hay intercambio, resaltarlo y ejecutar
 			if array[j] > array[j + 1]:
-				var temp = array[j]
+				if "set_highlight" in visualizer:
+					visualizer.set_highlight([j, j + 1])
+				await Stepper.wait()
+
+				var tmp = array[j]
 				array[j] = array[j + 1]
-				array[j + 1] = temp
-				visualizer.set_array(array)
-	visualizer.set_highlight([])
-	visualizer.set_array(array)
+				array[j + 1] = tmp
+				if "set_array" in visualizer:
+					visualizer.set_array(array)
+				await Stepper.wait()
+
+		# (Opcional) marcar el último como “fijo” en verde
+		if "set_highlight" in visualizer:
+			visualizer.set_highlight([n - i - 1])
+		await Stepper.wait()
+
+	# Limpieza final
+	if "set_highlight" in visualizer:
+		visualizer.set_highlight([])
+	if "set_array" in visualizer:
+		visualizer.set_array(array)

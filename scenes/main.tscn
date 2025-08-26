@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpod25e3l2box"]
+[gd_scene load_steps=4 format=3 uid="uid://bpod25e3l2box"]
 
 [ext_resource type="Script" uid="uid://cj3cmq7qy3664" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://5jo2pduvpmmb" path="res://scenes/array_visualizer.tscn" id="1_o5qli"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
+font_size = 30
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -21,10 +24,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0142752, 0.0142752, 0.0142752, 1)
 
+[node name="ArrayVisualizer" parent="." instance=ExtResource("1_o5qli")]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
+offset_right = 134.0
+offset_bottom = 226.0
 
 [node name="GenerateArray" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -47,15 +52,93 @@ popup/item_3/id = 3
 layout_mode = 2
 text = "Play"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+[node name="SpeedSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
-min_value = 0.05
 max_value = 1.0
 step = 0.05
 value = 0.3
 
-[node name="ArrayVisualizer" parent="." instance=ExtResource("1_o5qli")]
+[node name="PlayPauseButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Pause"
+
+[node name="NextButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Siguiente"
+
+[node name="ResetButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="SearchContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -139.0
+offset_bottom = 101.0
+grow_horizontal = 0
+
+[node name="SearchOption" type="OptionButton" parent="SearchContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Binary Search"
+popup/item_0/id = 0
+popup/item_1/text = "Linear Search"
+popup/item_1/id = 1
+
+[node name="LineEdit" type="LineEdit" parent="SearchContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SearchButton" type="Button" parent="SearchContainer"]
+layout_mode = 2
+text = "Buscar"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.5
+offset_right = 38.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Algorithm"
+label_settings = SubResource("LabelSettings_0wfyh")
+
+[node name="searchTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -42.0
+offset_right = 49.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Search"
+label_settings = SubResource("LabelSettings_0wfyh")
+horizontal_alignment = 2
+
+[node name="Busqueda" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+offset_right = 98.0
+grow_vertical = 0
+text = "Busqueda por:"
+label_settings = SubResource("LabelSettings_0wfyh")
 
 [connection signal="pressed" from="VBoxContainer/GenerateArray" to="." method="_on_generate_pressed"]
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_sort_pressed"]
-[connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_speed_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/PlayPauseButton" to="." method="_on_PlayPauseBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/NextButton" to="." method="_on_NextBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_ResetBtn_pressed"]
+[connection signal="pressed" from="SearchContainer/SearchButton" to="." method="_on_search_pressed"]

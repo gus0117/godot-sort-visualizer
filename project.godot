@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Parameters="*res://scripts/globals/parameters.gd"
+Stepper="*res://scripts/globals/stepper.gd"
 
 [dotnet]
 

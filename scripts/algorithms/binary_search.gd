@@ -1,5 +1,5 @@
 extends Node
-
+'''
 func binary_search_step(array: Array, value: int, visualizer: Node) -> void:
 	var inicio = 0
 	var fin = array.size() - 1
@@ -16,3 +16,24 @@ func binary_search_step(array: Array, value: int, visualizer: Node) -> void:
 			inicio = medio + 1
 		else:
 			fin = medio - 1
+'''
+
+func binary_search_step(array: Array, visualizer: Node2D, value: int) -> void:
+	var lo = 0
+	var hi = array.size() - 1
+
+	while lo <= hi:
+		var mid = (lo + hi) >> 1
+		if "set_highlight" in visualizer:
+			visualizer.set_highlight([mid]) # Color.YELLEW
+		await Stepper.wait()
+
+		if array[mid] == value:
+			if "set_highlight" in visualizer:
+				visualizer.set_highlight([mid]) # Color.GREEN
+			await Stepper.wait()
+			return
+		elif array[mid] < value:
+			lo = mid + 1
+		else:
+			hi = mid - 1
