@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpod25e3l2box"]
+[gd_scene load_steps=5 format=3 uid="uid://bpod25e3l2box"]
 
 [ext_resource type="Script" uid="uid://cj3cmq7qy3664" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://5jo2pduvpmmb" path="res://scenes/array_visualizer.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://drvtegcbaxjqm" path="res://scripts/search_input.gd" id="3_sugp2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0wfyh"]
 font_size = 30
@@ -98,9 +99,10 @@ popup/item_0/id = 0
 popup/item_1/text = "Linear Search"
 popup/item_1/id = 1
 
-[node name="LineEdit" type="LineEdit" parent="SearchContainer"]
+[node name="SearchInput" type="LineEdit" parent="SearchContainer"]
 layout_mode = 2
 alignment = 1
+script = ExtResource("3_sugp2")
 
 [node name="SearchButton" type="Button" parent="SearchContainer"]
 layout_mode = 2
@@ -151,4 +153,5 @@ label_settings = SubResource("LabelSettings_0wfyh")
 [connection signal="pressed" from="VBoxContainer/PlayPauseButton" to="." method="_on_PlayPauseBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/NextButton" to="." method="_on_NextBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_ResetBtn_pressed"]
+[connection signal="text_changed" from="SearchContainer/SearchInput" to="SearchContainer/SearchInput" method="_on_text_changed"]
 [connection signal="pressed" from="SearchContainer/SearchButton" to="." method="_on_search_pressed"]

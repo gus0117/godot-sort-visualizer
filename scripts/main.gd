@@ -3,7 +3,7 @@ extends Control
 @onready var visualizer = $ArrayVisualizer
 @onready var sort_option = $VBoxContainer/SortOption
 @onready var search_option = $SearchContainer/SearchOption
-@onready var input_value = $SearchContainer/LineEdit
+@onready var input_value = $SearchContainer/SearchInput
 @onready var speed_slider = $VBoxContainer/SpeedSlider
 @onready var play_pause_btn = $VBoxContainer/PlayPauseButton
 @onready var next_btn = $VBoxContainer/NextButton
@@ -63,7 +63,8 @@ func generate_array() -> Array:
 
 func _on_ResetBtn_pressed() -> void:
 	# 1. Resetear Stepper a modo auto
-	Stepper.set_playing(true)
+	#Stepper.set_playing(true)
+	Stepper.reset()
 	play_pause_btn.text =  "Pausar" if Stepper.playing else "Reanudar"
 
 	# 2. Restaurar array inicial (o generar otro nuevo si querés aleatorio)
